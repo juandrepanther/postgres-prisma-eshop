@@ -1,0 +1,12 @@
+version: "3"
+services:
+  eshop-ee-ze-com:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    networks:
+      - postgre-network
+networks:
+  postgre-network:
+    external: true
