@@ -5,6 +5,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import theme from '@/lib/theme'
 import { CssBaseline } from '@mui/material'
+import ResponsiveAppBar from '@/components/appbar'
 
 export const metadata = {
   metadataBase: new URL('https://postgres-prisma.vercel.app'),
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
+            <ResponsiveAppBar />
             {children}
           </ThemeProvider>
         </AppRouterCacheProvider>
