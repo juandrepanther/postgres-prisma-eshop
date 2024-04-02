@@ -14,7 +14,7 @@ import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 import AdbIcon from '@mui/icons-material/Adb'
-import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 
 const pages = ['Products', 'Pricing', 'Blog']
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
@@ -129,7 +129,7 @@ function ResponsiveAppBar() {
 
           <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center', columnGap: '1rem' }}>
             <Tooltip title="Open cart">
-              <ShoppingBasketIcon />
+              <ShoppingCartIcon />
             </Tooltip>
 
             <Menu
