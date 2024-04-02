@@ -2,6 +2,7 @@ import prisma from '@/lib/prisma'
 import { timeAgo } from '@/lib/utils'
 import Image from 'next/image'
 import RefreshButton from './refresh-button'
+import { Box, Container, Paper, Typography } from '@mui/material'
 
 export default async function Table() {
   const startTime = Date.now()
@@ -9,36 +10,47 @@ export default async function Table() {
   const duration = Date.now() - startTime
 
   return (
-    <div className="bg-white/30 p-12 shadow-xl ring-1 ring-gray-900/5 rounded-lg backdrop-blur-lg max-w-xl mx-auto w-full">
-      <div className="flex justify-between items-center mb-4">
-        <div className="space-y-1">
-          <h2 className="text-xl font-semibold">Recent Users</h2>
-          <p className="text-sm text-gray-500">
+    <Container maxWidth="lg">
+      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Box>
+          <Typography sx={{ fontWeight: 700 }}>Recent Users</Typography>
+          <Typography>
             Fetched {users.length} users in {duration}ms from PostgreSQL + Prisma
-          </p>
-        </div>
+          </Typography>
+        </Box>
         <RefreshButton />
-      </div>
-      <div className="divide-y divide-gray-900/5">
+      </Box>
+      <Box sx={{ my: '2rem' }}>
         {users.map((user) => (
-          <div key={user.name} className="flex items-center justify-between py-3">
-            <div className="flex items-center space-x-4 ">
+          <Paper
+            elevation={6}
+            sx={{
+              backgroundColor: 'transparent',
+              p: '1rem',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              my: '1rem',
+            }}
+            key={user.name}
+          >
+            <Box>
               <Image
+                style={{ borderRadius: '50%' }}
                 src={user.image}
                 alt={user.name}
                 width={48}
                 height={48}
-                className="rounded-full ring-1 ring-gray-900/8"
               />
-              <div className="space-y-1">
-                <p className="font-medium leading-none">{user.name}</p>
-                <p className="text-sm text-gray-500">{user.email}</p>
-              </div>
-            </div>
-            <p className="text-sm text-gray-500">{timeAgo(user.createdAt)}</p>
-          </div>
+              <Box>
+                <Typography>{user.name}</Typography>
+                <Typography>{user.email}</Typography>
+              </Box>
+            </Box>
+            <Typography>{timeAgo(user.createdAt)}</Typography>
+          </Paper>
         ))}
-      </div>
-    </div>
+      </Box>
+    </Container>
   )
 }
