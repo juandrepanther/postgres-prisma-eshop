@@ -3,6 +3,7 @@ import { timeAgo } from '@/lib/utils'
 import Image from 'next/image'
 import RefreshButton from './refresh-button'
 import { Box, Container, Paper, Typography } from '@mui/material'
+import Counter from './Counter'
 
 export default async function Table() {
   const startTime = Date.now()
@@ -17,6 +18,7 @@ export default async function Table() {
           <Typography>
             Fetched {users.length} users in {duration}ms from PostgreSQL + Prisma
           </Typography>
+          <Counter />
         </Box>
         <RefreshButton />
       </Box>
