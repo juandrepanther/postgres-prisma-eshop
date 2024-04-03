@@ -38,7 +38,12 @@ export default function Page() {
           my: '2rem',
         }}
       >
-        <Button onClick={goComplete} color="success" variant="contained">
+        <Button
+          disabled={totalPrice === 0}
+          onClick={goComplete}
+          color="success"
+          variant="contained"
+        >
           Buy
         </Button>
         <Typography sx={{ fontWeight: 800 }}>Total: {totalPrice} EUR</Typography>

@@ -3,7 +3,7 @@ import RefreshButton from './refresh-button'
 import { Box, Container, Typography } from '@mui/material'
 import ProductCard from './product-card'
 
-export default async function Table() {
+export default async function ProductList() {
   const products = await prisma.product.findMany()
 
   return (
