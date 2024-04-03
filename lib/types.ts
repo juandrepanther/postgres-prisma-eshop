@@ -6,7 +6,7 @@ export enum ProductCategory {
   BED_SET = 'BED_SET',
 }
 
-export type NewProduct = {
+export type ProductType = {
   category: ProductCategory
   image: string
   title: string
@@ -20,6 +20,6 @@ export type NewProduct = {
 
 export interface IChange {
   event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  of: keyof NewProduct
+  of: keyof ProductType
   isCheckbox?: boolean
 }

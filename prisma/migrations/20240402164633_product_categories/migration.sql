@@ -4,7 +4,7 @@ CREATE TYPE "ProductCategory" AS ENUM ('SOFA', 'CHAIR', 'MUG', 'POT', 'BED_SET')
 -- CreateTable
 CREATE TABLE "Product" (
     "id" SERIAL NOT NULL,
-    "category" "ProductCategory"[],
+    "category" "ProductCategory",
     "image" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT,

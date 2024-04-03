@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Box,
   Divider,
   Grid,
   Modal,
@@ -13,7 +12,10 @@ import {
   FormGroup,
   Button,
 } from '@mui/material'
-import { IChange, NewProduct, ProductCategory } from '@/lib/types'
+import { IChange, ProductType, ProductCategory } from '@/lib/types'
+
+import { calculateDiscountPercentage } from '@/lib/utils'
+import { toast } from 'react-toastify'
 
 interface Props {
   isOpenModal: boolean
@@ -33,7 +35,7 @@ const initialValues = {
 }
 
 export default function AddNewProductModal({ isOpenModal, setIsOpenModal }: Props) {
-  const [formData, setFormData] = useState<NewProduct>(initialValues)
+  const [formData, setFormData] = useState<ProductType>(initialValues)
   const [formComplete, setFormComplete] = useState(false)
 
   const changeHandler = ({ event, of, isCheckbox }: IChange) => {
@@ -42,9 +44,7 @@ export default function AddNewProductModal({ isOpenModal, setIsOpenModal }: Prop
       [of]: isCheckbox ? (event.target as HTMLInputElement).checked : event.target.value,
     }))
   }
-  const handleClose = () => {
-    setIsOpenModal(false)
-  }
+  const handleClose = () => setIsOpenModal(false)
 
   useEffect(() => {
     if (formData.category && formData.image && formData.title && formData.price) {
@@ -54,8 +54,32 @@ export default function AddNewProductModal({ isOpenModal, setIsOpenModal }: Prop
     }
   }, [formData])
 
-  const create = () => {
-    console.log(formData)
+  const create = async () => {
+    const newProduct = {
+      category: formData.category,
+      image: formData.image,
+      title: formData.title,
+      description: formData.description,
+      price: formData.price,
+      isNew: formData.isNew,
+      discount: calculateDiscountPercentage(formData.price, formData.previousPrice),
+      previousPrice: formData.previousPrice,
+      outOfStock: formData.outOfStock,
+    }
+
+    const res = await fetch('/api/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newProduct),
+    })
+
+    if (res.status === 201) {
+      console.log('Product created successfully')
+    }
+    toast.success('Product created successfully')
+    handleClose()
   }
 
   return (
@@ -163,7 +187,7 @@ export default function AddNewProductModal({ isOpenModal, setIsOpenModal }: Prop
             </FormGroup>
           </Grid>
         </Grid>
-        <Button disabled={!formComplete} type="submit" variant="outlined" onClick={create}>
+        <Button disabled={!formComplete} variant="outlined" onClick={create}>
           {formComplete ? 'Create' : 'Form is not complete'}
         </Button>
       </Paper>

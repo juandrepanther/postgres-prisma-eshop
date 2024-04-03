@@ -1,6 +1,9 @@
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
 import { ThemeProvider } from '@mui/material/styles'
 
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 import './globals.css'
 import { Inter } from 'next/font/google'
 import theme from '@/lib/theme'
@@ -26,6 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
+            <ToastContainer />
             <ResponsiveAppBar />
             {children}
           </ThemeProvider>

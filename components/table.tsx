@@ -4,10 +4,11 @@ import Image from 'next/image'
 import RefreshButton from './refresh-button'
 import { Box, Container, Paper, Typography } from '@mui/material'
 import Counter from './Counter'
+import ProductCard from './product-card'
 
 export default async function Table() {
   const startTime = Date.now()
-  const users = await prisma.users.findMany()
+  const products = await prisma.product.findMany()
   const duration = Date.now() - startTime
 
   return (
@@ -16,41 +17,23 @@ export default async function Table() {
         <Box>
           <Typography sx={{ fontWeight: 700 }}>Recent Users</Typography>
           <Typography>
-            Fetched {users.length} users in {duration}ms from PostgreSQL + Prisma
+            Fetched {products.length} products in {duration}ms from PostgreSQL + Prisma
           </Typography>
           <Counter />
         </Box>
         <RefreshButton />
       </Box>
-      <Box sx={{ my: '2rem' }}>
-        {users.map((user) => (
-          <Paper
-            elevation={6}
-            sx={{
-              backgroundColor: 'transparent',
-              p: '1rem',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              my: '1rem',
-            }}
-            key={user.name}
-          >
-            <Box>
-              <Image
-                style={{ borderRadius: '50%' }}
-                src={user.image}
-                alt={user.name}
-                width={48}
-                height={48}
-              />
-              <Box>
-                <Typography>{user.name}</Typography>
-                <Typography>{user.email}</Typography>
-              </Box>
-            </Box>
-            <Typography>{timeAgo(user.createdAt)}</Typography>
-          </Paper>
+      <Box
+        sx={{
+          my: '2rem',
+          display: 'flex',
+          gap: '1rem',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
+        }}
+      >
+        {products.map((product) => (
+          <ProductCard key={product.id} {...product} />
         ))}
       </Box>
     </Container>
