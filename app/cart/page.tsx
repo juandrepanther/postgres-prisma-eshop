@@ -7,13 +7,16 @@ import ProductCartItem from '@/components/product-cart-item'
 import { useRouter } from 'next/navigation'
 
 export default function Page() {
-  const products = useStore((state) => state.products)
+  const { products, reset } = useStore((state) => state)
 
   const totalPrice = products.reduce((total, product) => total + product.price, 0)
 
   const router = useRouter()
 
-  const goComplete = () => router.push('/complete')
+  const goComplete = () => {
+    router.push('/complete')
+    reset()
+  }
 
   return (
     <Container maxWidth="lg">

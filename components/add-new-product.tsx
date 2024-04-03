@@ -95,7 +95,9 @@ export default function AddNewProductModal({ isOpenModal, setIsOpenModal }: Prop
       disableScrollLock
     >
       <Paper component="form" elevation={6} sx={{ p: '2rem' }}>
-        <Typography sx={{ fontWeight: 600, p: '1rem' }}>Enter the product data</Typography>
+        <Typography sx={{ fontWeight: 600, p: '1rem', fontSize: '1.5rem' }}>
+          Enter the product data
+        </Typography>
 
         <Divider variant="fullWidth" />
 

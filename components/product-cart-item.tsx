@@ -27,6 +27,7 @@ export default function ProductCartItem({ image, price, title, id }: ProductType
           display: 'flex',
           gap: '1rem',
           alignItems: 'center',
+          overflow: 'hidden',
         }}
       >
         <Image src={image} alt={title} width={70} height={70} />
