@@ -1,3 +1,5 @@
+# Postgre Prisma NextJS Zustand Material UI Eshop Prototype
+
 # for development postgre
 
 Location: https://vercel.com/juandrepanthers-projects/~/stores/postgres/store_PizL7k8YXcPtT7sJ/data
