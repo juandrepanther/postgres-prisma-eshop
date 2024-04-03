@@ -1,7 +1,6 @@
 import prisma from '@/lib/prisma'
 import RefreshButton from './refresh-button'
 import { Box, Container, Typography } from '@mui/material'
-import Counter from './Counter'
 import ProductCard from './product-card'
 
 export default async function Table() {
@@ -17,7 +16,6 @@ export default async function Table() {
           <Typography>
             Fetched {products.length} products in {duration}ms from PostgreSQL + Prisma
           </Typography>
-          {/* <Counter /> */}
         </Box>
         <RefreshButton />
       </Box>

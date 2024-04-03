@@ -10,8 +10,8 @@ import {
   Checkbox,
   FormControlLabel,
   FormGroup,
-  Button,
 } from '@mui/material'
+import LoadingButton from '@mui/lab/LoadingButton'
 import { IChange, ProductType, ProductCategory } from '@/lib/types'
 
 import { calculateDiscountPercentage } from '@/lib/utils'
@@ -23,6 +23,7 @@ interface Props {
 }
 
 const initialValues = {
+  id: 0,
   category: ProductCategory.SOFA,
   image: '',
   title: '',
@@ -37,6 +38,7 @@ const initialValues = {
 export default function AddNewProductModal({ isOpenModal, setIsOpenModal }: Props) {
   const [formData, setFormData] = useState<ProductType>(initialValues)
   const [formComplete, setFormComplete] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const changeHandler = ({ event, of, isCheckbox }: IChange) => {
     setFormData((prevFormData) => ({
@@ -55,6 +57,8 @@ export default function AddNewProductModal({ isOpenModal, setIsOpenModal }: Prop
   }, [formData])
 
   const create = async () => {
+    setLoading(true)
+
     const newProduct = {
       category: formData.category,
       image: formData.image,
@@ -79,6 +83,7 @@ export default function AddNewProductModal({ isOpenModal, setIsOpenModal }: Prop
       console.log('Product created successfully')
     }
     toast.success('Product created successfully')
+    setLoading(false)
     handleClose()
   }
 
@@ -187,9 +192,14 @@ export default function AddNewProductModal({ isOpenModal, setIsOpenModal }: Prop
             </FormGroup>
           </Grid>
         </Grid>
-        <Button disabled={!formComplete} variant="outlined" onClick={create}>
-          {formComplete ? 'Create' : 'Form is not complete'}
-        </Button>
+        <LoadingButton
+          loading={loading}
+          disabled={!formComplete}
+          variant="outlined"
+          onClick={create}
+        >
+          <span>{formComplete ? 'Create' : 'Form is not complete'}</span>
+        </LoadingButton>
       </Paper>
     </Modal>
   )

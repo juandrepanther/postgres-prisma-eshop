@@ -9,18 +9,7 @@ import { useStore } from '@/store/store'
 import { toast } from 'react-toastify'
 
 export default function ProductCard(props: ProductType) {
-  const {
-    category,
-    image,
-    title,
-    description,
-    price,
-    isNew,
-    previousPrice,
-    outOfStock,
-    discount,
-    id,
-  } = props
+  const { image, title, description, price, isNew, previousPrice, outOfStock, discount, id } = props
   const [isHovered, setIsHovered] = useState(false)
 
   const { add } = useStore((state) => state)

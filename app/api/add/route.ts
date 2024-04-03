@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiResponse } from 'next'
 import prisma from '@/lib/prisma'
 import { ProductType } from '@/lib/types'
 import { NextResponse } from 'next/server'
@@ -8,8 +8,6 @@ export async function POST(req: Request, res: NextApiResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' })
   }
-
-  // const body = await req.json()
 
   const {
     category,

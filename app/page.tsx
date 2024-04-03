@@ -1,13 +1,13 @@
 import { Suspense } from 'react'
 import Table from '@/components/table'
-import TablePlaceholder from '@/components/table-placeholder'
+import CircularProgress from '@mui/material/CircularProgress'
 
 export const dynamic = 'force-dynamic'
 
 export default function Home() {
   return (
     <main>
-      <Suspense fallback={<TablePlaceholder />}>
+      <Suspense fallback={<CircularProgress />}>
         <Table />
       </Suspense>
     </main>
