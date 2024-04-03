@@ -18,19 +18,22 @@ import AddIcon from '@mui/icons-material/Add'
 import AddNewProductModal from './add-new-product'
 import { useRouter } from 'next/navigation'
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag'
+import { useState, MouseEvent } from 'react'
+import { useStore } from '@/store/store'
 
 const pages = ['Products']
 
 function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)
+  const [isOpenModal, setOpenModal] = useState(false)
+
+  const products = useStore((state) => state.products)
 
   const router = useRouter()
 
-  const [isOpenModal, setOpenModal] = React.useState(false)
-
   const handleOpenModal = () => setOpenModal(true)
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget)
   }
 
@@ -115,7 +118,30 @@ function ResponsiveAppBar() {
                 />
               </Tooltip>
               <Tooltip title="Open cart">
-                <ShoppingCartIcon sx={{ cursor: 'pointer' }} onClick={openCart} />
+                <Box sx={{ position: 'relative' }}>
+                  <ShoppingCartIcon sx={{ cursor: 'pointer' }} onClick={openCart} />
+                  {products.length > 0 && (
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        top: -5,
+                        right: -10,
+                        width: '15px',
+                        height: '15px',
+                        backgroundColor: 'red',
+                        color: 'white',
+                        borderRadius: '50%',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <Typography sx={{ fontSize: '.5rem', fontWeight: 400 }}>
+                        {products.length}
+                      </Typography>
+                    </Box>
+                  )}
+                </Box>
               </Tooltip>
             </Box>
           </Toolbar>
