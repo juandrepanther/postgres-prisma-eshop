@@ -12,7 +12,6 @@ import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
-import AdbIcon from '@mui/icons-material/Adb'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import AddIcon from '@mui/icons-material/Add'
 import AddNewProductModal from './add-new-product'
@@ -91,7 +90,6 @@ function ResponsiveAppBar() {
                 ))}
               </Menu>
             </Box>
-            <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
 
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (

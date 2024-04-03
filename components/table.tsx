@@ -4,18 +4,13 @@ import { Box, Container, Typography } from '@mui/material'
 import ProductCard from './product-card'
 
 export default async function Table() {
-  const startTime = Date.now()
   const products = await prisma.product.findMany()
-  const duration = Date.now() - startTime
 
   return (
     <Container maxWidth="lg">
       <Box sx={{ display: 'flex', justifyContent: 'space-between', my: '4rem' }}>
         <Box>
-          <Typography sx={{ fontWeight: 700 }}>Recent Products</Typography>
-          <Typography>
-            Fetched {products.length} products in {duration}ms from PostgreSQL + Prisma
-          </Typography>
+          <Typography sx={{ fontSize: '2rem', fontWeight: 700 }}>Recent Products</Typography>
         </Box>
         <RefreshButton />
       </Box>
