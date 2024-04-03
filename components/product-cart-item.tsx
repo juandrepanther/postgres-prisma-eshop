@@ -22,14 +22,22 @@ export default function ProductCartItem({ image, price, title, id }: ProductType
         justifyContent: 'space-between',
       }}
     >
-      <Box sx={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          gap: '1rem',
+          alignItems: 'center',
+        }}
+      >
         <Image src={image} alt={title} width={70} height={70} />
         <Typography sx={{ fontWeight: 500 }}>{title}</Typography>
       </Box>
-      <Typography sx={{ fontWeight: 500 }}>{price} EUR</Typography>
-      <Button onClick={removeProductFromCart} color="warning" variant="outlined">
-        Remove from Cart
-      </Button>
+      <Box sx={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+        <Typography sx={{ fontWeight: 500 }}>{price} EUR</Typography>
+        <Button onClick={removeProductFromCart} color="warning" variant="outlined">
+          Remove from Cart
+        </Button>
+      </Box>
     </Box>
   )
 }

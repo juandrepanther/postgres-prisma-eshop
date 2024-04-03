@@ -6,6 +6,7 @@ interface Props {
   products: ProductType[]
   add: (newProduct: ProductType) => void
   remove: (id: number) => void
+  reset: () => void
 }
 
 export const useStore = create<Props>()(
@@ -18,6 +19,7 @@ export const useStore = create<Props>()(
         set((state) => ({
           products: state.products.filter((product) => product.id !== id),
         })),
+      reset: () => set({ products: [] }),
     }),
     { name: 'products-cart' },
   ),
