@@ -10,12 +10,6 @@ import theme from '@/lib/theme'
 import { CssBaseline } from '@mui/material'
 import ResponsiveAppBar from '@/components/appbar'
 
-export const metadata = {
-  metadataBase: new URL('https://postgres-prisma.vercel.app'),
-  title: 'Vercel Postgres Demo with Prisma',
-  description: 'A simple Next.js app with Vercel Postgres as the database and Prisma as the ORM',
-}
-
 const inter = Inter({
   variable: '--font-inter',
   subsets: ['latin'],
@@ -29,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <ToastContainer />
+            <ToastContainer autoClose={1000} />
             <ResponsiveAppBar />
             {children}
           </ThemeProvider>

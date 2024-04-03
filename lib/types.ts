@@ -7,6 +7,7 @@ export enum ProductCategory {
 }
 
 export type ProductType = {
+  id: number
   category: ProductCategory
   image: string
   title: string

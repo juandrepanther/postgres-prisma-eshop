@@ -5,18 +5,30 @@ import { Box, Button, Typography } from '@mui/material'
 import { ProductType } from '@/lib/types'
 import Image from 'next/image'
 import NewProductLabel from '@/public/isNew.png'
+import { useStore } from '@/store/store'
+import { toast } from 'react-toastify'
 
-export default function ProductCard({
-  image,
-  title,
-  price,
-  description,
-  isNew,
-  discount,
-  outOfStock,
-  previousPrice,
-}: ProductType) {
+export default function ProductCard(props: ProductType) {
+  const {
+    category,
+    image,
+    title,
+    description,
+    price,
+    isNew,
+    previousPrice,
+    outOfStock,
+    discount,
+    id,
+  } = props
   const [isHovered, setIsHovered] = useState(false)
+
+  const { add } = useStore((state) => state)
+
+  const addProductToCart = () => {
+    add(props)
+    toast.success('Product added to cart')
+  }
 
   return (
     <Box
@@ -124,7 +136,9 @@ export default function ProductCard({
             boxShadow: '0 0 10px 0 grey',
           }}
         >
-          <Button variant="contained">Add to Cart</Button>
+          <Button onClick={addProductToCart} variant="contained">
+            Add to Cart
+          </Button>
         </Box>
       )}
     </Box>
