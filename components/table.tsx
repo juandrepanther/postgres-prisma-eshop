@@ -1,8 +1,6 @@
 import prisma from '@/lib/prisma'
-import { timeAgo } from '@/lib/utils'
-import Image from 'next/image'
 import RefreshButton from './refresh-button'
-import { Box, Container, Paper, Typography } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import Counter from './Counter'
 import ProductCard from './product-card'
 
@@ -13,13 +11,13 @@ export default async function Table() {
 
   return (
     <Container maxWidth="lg">
-      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', my: '4rem' }}>
         <Box>
-          <Typography sx={{ fontWeight: 700 }}>Recent Users</Typography>
+          <Typography sx={{ fontWeight: 700 }}>Recent Products</Typography>
           <Typography>
             Fetched {products.length} products in {duration}ms from PostgreSQL + Prisma
           </Typography>
-          <Counter />
+          {/* <Counter /> */}
         </Box>
         <RefreshButton />
       </Box>
@@ -29,7 +27,7 @@ export default async function Table() {
           display: 'flex',
           gap: '1rem',
           flexWrap: 'wrap',
-          justifyContent: 'space-between',
+          justifyContent: { xs: 'center', md: 'space-between' },
         }}
       >
         {products.map((product) => (
