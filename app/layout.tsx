@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <ToastContainer autoClose={1000} />
+            <ToastContainer autoClose={1000} position="bottom-right" />
             <ResponsiveAppBar />
             {children}
           </ThemeProvider>
