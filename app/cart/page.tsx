@@ -4,11 +4,16 @@ import React from 'react'
 import { Box, Button, Container, Divider, Typography } from '@mui/material'
 import { useStore } from '@/store/store'
 import ProductCartItem from '@/components/product-cart-item'
+import { useRouter } from 'next/navigation'
 
 export default function Page() {
   const products = useStore((state) => state.products)
 
   const totalPrice = products.reduce((total, product) => total + product.price, 0)
+
+  const router = useRouter()
+
+  const goComplete = () => router.push('/complete')
 
   return (
     <Container maxWidth="lg">
@@ -30,7 +35,7 @@ export default function Page() {
           my: '2rem',
         }}
       >
-        <Button color="success" variant="contained">
+        <Button onClick={goComplete} color="success" variant="contained">
           Buy
         </Button>
         <Typography sx={{ fontWeight: 800 }}>Total: {totalPrice} EUR</Typography>
