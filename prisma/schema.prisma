@@ -29,4 +29,8 @@ model Product {
   outOfStock      Boolean               @default(false)
 }
 
-
+model User {
+  id            Int      @id
+  username      String
+  password      String
+}

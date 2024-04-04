@@ -24,3 +24,9 @@ export interface IChange {
   of: keyof ProductType
   isCheckbox?: boolean
 }
+
+export interface IUserDummy {
+  id?: number
+  username: string
+  password: string
+}

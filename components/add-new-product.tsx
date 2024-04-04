@@ -16,6 +16,7 @@ import { IChange, ProductType, ProductCategory } from '@/lib/types'
 
 import { calculateDiscountPercentage } from '@/lib/utils'
 import { toast } from 'react-toastify'
+import Check from './check'
 
 interface Props {
   isOpenModal: boolean
@@ -39,6 +40,7 @@ export default function AddNewProductModal({ isOpenModal, setIsOpenModal }: Prop
   const [formData, setFormData] = useState<ProductType>(initialValues)
   const [formComplete, setFormComplete] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [isOpenCheckModal, setOpenCheckModal] = useState(false)
 
   const changeHandler = ({ event, of, isCheckbox }: IChange) => {
     setFormData((prevFormData) => ({
@@ -56,35 +58,9 @@ export default function AddNewProductModal({ isOpenModal, setIsOpenModal }: Prop
     }
   }, [formData])
 
-  const create = async () => {
+  const openCheck = () => {
     setLoading(true)
-
-    const newProduct = {
-      category: formData.category,
-      image: formData.image,
-      title: formData.title,
-      description: formData.description,
-      price: formData.price,
-      isNew: formData.isNew,
-      discount: calculateDiscountPercentage(formData.price, formData.previousPrice),
-      previousPrice: formData.previousPrice,
-      outOfStock: formData.outOfStock,
-    }
-
-    const res = await fetch('/api/add', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newProduct),
-    })
-
-    if (res.status === 201) {
-      console.log('Product created successfully')
-    }
-    toast.success('Product created successfully')
-    setLoading(false)
-    handleClose()
+    setOpenCheckModal(true)
   }
 
   return (
@@ -198,10 +174,17 @@ export default function AddNewProductModal({ isOpenModal, setIsOpenModal }: Prop
           loading={loading}
           disabled={!formComplete}
           variant="outlined"
-          onClick={create}
+          onClick={openCheck}
         >
           <span>{formComplete ? 'Create' : 'Form is not complete'}</span>
         </LoadingButton>
+        <Check
+          formData={formData}
+          setLoading={setLoading}
+          setOpenCheckModal={setOpenCheckModal}
+          isOpenCheckModal={isOpenCheckModal}
+          setIsOpenModal={setIsOpenModal}
+        />
       </Paper>
     </Modal>
   )
