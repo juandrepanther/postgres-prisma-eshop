@@ -1,6 +1,6 @@
 import type { NextApiResponse } from 'next'
 import prisma from '@/lib/prisma'
-import { ProductType } from '@/lib/types'
+import { ProductType, ProductTypeDiscountAsNumber } from '@/lib/types'
 import { NextResponse } from 'next/server'
 import { ProductCategory } from '@prisma/client'
 
@@ -31,7 +31,7 @@ export async function POST(req: Request, res: NextApiResponse) {
     previousPrice: Number(previousPrice),
     outOfStock,
     discount,
-  } as ProductType
+  } as ProductTypeDiscountAsNumber
 
   try {
     await prisma.product.create({ data: newProduct })

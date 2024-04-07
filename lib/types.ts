@@ -14,10 +14,12 @@ export type ProductType = {
   description: string
   price: number
   isNew: boolean
-  discount: boolean
+  discount: boolean // in prisma it's number
   previousPrice: number
   outOfStock: boolean
 }
+
+export type ProductTypeDiscountAsNumber = ProductType & { discount: number }
 
 export interface IChange {
   event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

@@ -3,7 +3,7 @@ const nextConfig = {
   images: {
     domains: ['picsum.photos', 'images.ctfassets.net'],
   },
-  distDir: 'build',
+  // distDir: 'build',
 }
 
 module.exports = nextConfig

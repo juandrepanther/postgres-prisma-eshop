@@ -24,6 +24,7 @@ export default async function ProductList() {
         }}
       >
         {products.map((product) => (
+          // @ts-ignore
           <ProductCard key={product.id} {...product} />
         ))}
       </Box>
