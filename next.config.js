@@ -1,6 +1,15 @@
 const nextConfig = {
   images: {
-    domains: ['picsum.photos', 'images.ctfassets.net'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.ctfassets.net',
+      },
+    ],
   },
 }
 

@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { Box, Button, Typography } from '@mui/material'
 import { ProductType } from '@/lib/types'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import NewProductLabel from '@/public/isNew.png'
 import { useStore } from '@/store/store'
 import { toast } from 'react-toastify'

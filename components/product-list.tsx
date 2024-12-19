@@ -7,7 +7,7 @@ export default async function ProductList() {
   const products = await prisma.product.findMany()
 
   return (
-    <Container maxWidth="lg">
+    (<Container maxWidth="lg">
       <Box sx={{ display: 'flex', justifyContent: 'space-between', my: '4rem' }}>
         <Box>
           <Typography sx={{ fontSize: '2rem', fontWeight: 700 }}>Recent Products</Typography>
@@ -25,9 +25,9 @@ export default async function ProductList() {
       >
         {products.map((product) => (
           // @ts-ignore
-          <ProductCard key={product.id} {...product} />
+          (<ProductCard key={product.id} {...product} />)
         ))}
       </Box>
-    </Container>
-  )
+    </Container>)
+  );
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Button, Typography } from '@mui/material'
 import { ProductType } from '@/lib/types'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import { useStore } from '@/store/store'
 
 export default function ProductCartItem({ image, price, title, id }: ProductType) {
