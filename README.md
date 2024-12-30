@@ -6,8 +6,8 @@
 
 ## Deployed on Vercel
 
-Open: https://eshop-prototype.ee-ze.com/
-Open: https://postgres-prisma-eshop.vercel.app/
+- Open: https://eshop-prototype.ee-ze.com/
+- Open: https://postgres-prisma-eshop.vercel.app/
 
 ## update postgre on prisma schema change
 
