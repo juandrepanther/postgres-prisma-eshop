@@ -1,13 +1,13 @@
 # Postgre Prisma NextJS Zustand Material UI Eshop Prototype
 
-## Development
-
-`pnpm run dev`
-
-## Deployed on Vercel
+![Vercel Deploy](https://deploy-badge.vercel.app/vercel/reactions-demo)
 
 - Open: https://eshop-prototype.ee-ze.com/
 - Open: https://postgres-prisma-eshop.vercel.app/
+
+## Development
+
+`pnpm run dev`
 
 ## update postgre on prisma schema change
 
